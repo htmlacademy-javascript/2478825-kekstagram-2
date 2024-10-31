@@ -1,23 +1,41 @@
 // task 1
-const lenghtString = function (line, maxlenght) {
-  return (line.lenght <= maxlenght)
-}
-// console.log(lenghtString('hjhjhjh', 20))
+const checkLengthString = (line, maxlenght) => line.length <= maxlenght;
+
+// console.log(checkLengthString('hjhjhjh', 20))
 
 // task 2
-const palindrome = function (line) {
-  const userLine = line.replaceAll(' ', '').toLowerCase()
-  let palindrome = '';
+const isPalindrome =  (text) => {
+  const normalizedText = text.replaceAll(' ', '').toLowerCase();
+  let reversedText = '';
 
-  for (let i = userLine.lenght - 1; i >= 0; i--) {
-    palindrome += userLine.at(i)
+  for (let i = normalizedText.length - 1; i >= 0; i--) {
+    reversedText += normalizedText.at(i);
   }
-  return palindrome === userLine
-}
+  return normalizedText === reversedText;
+};
 
-console.log (palindrome('довод'));
+console.log (isPalindrome('довод'));
 
 // task 3
-const positiveInteger = function () {
+
+const cutNumbers = (text) => {
+  const currentText = String(text);
+  let result = '';
+  for (let i = 0; i < currentText.length; i++) {
+    if(!Number.isNaN(parseInt(currentText[i], 10))){
+      result +=currentText[i]
+    }
+  }
+  return parseInt(result, 10)
 
 }
+
+console.log(cutNumbers('asdasdasd'))
+
+
+
+
+
+
+
+
