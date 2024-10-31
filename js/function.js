@@ -31,3 +31,11 @@ const cutNumbers = (text) => {
 }
 
 console.log(cutNumbers('asdasdasd'))
+
+
+
+
+
+
+
+
