@@ -32,6 +32,9 @@ const cutNumbers = (text) => {
 
 console.log(cutNumbers('asdasdasd'))
 
+// task 4
+
+
 
 
 
