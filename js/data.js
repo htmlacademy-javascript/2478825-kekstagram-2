@@ -78,3 +78,4 @@ const getDescriptionPhoto = () => {
 }
 
 export {getDescriptionPhoto};
+export {getPhoto};
