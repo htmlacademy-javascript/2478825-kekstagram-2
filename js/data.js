@@ -42,21 +42,16 @@ const getComments = () => {
       name: USERS_NAME[getRandomInteger(0, USERS_NAME.length - 1)],
     })
   }
+  return comments
 }
 
 const getPhoto = (i) => {
   return {
     id: i,
-    url: `photos/ ${i}.jpg`,
+    url: `photos/${i}.jpg`,
     description: DESCRIPTIONS[getRandomInteger(0, DESCRIPTIONS.length - 1)],
     likes: getRandomInteger(MIN_LIKES, MAX_LIKES),
-    comments:
-    {
-      id: generatePhotoId(),
-      avatar: `img/avatar-${getRandomInteger(MIN_AVATAR, MAX_AVATAR)}.svg`,
-      message: MESSAGES[getRandomInteger(0, MESSAGES.length - 1)],
-      name: USERS_NAME[getRandomInteger(0, USERS_NAME.length - 1)],
-    }
+    comments:getComments()
   }
 }
 
