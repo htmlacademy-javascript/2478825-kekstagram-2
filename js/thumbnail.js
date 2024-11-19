@@ -1,44 +1,26 @@
-import {getPhoto} from './data';
-import {getDescriptionPhoto} from './data';
-
-
 const pictureTemplate = document.querySelector('#picture')
-.content
-.querySelector ('.picture');
+  .content
+  .querySelector('.picture');
 const container = document.querySelector('.pictures');
 
+const render = (photos) => {
+  const fragment = document.createDocumentFragment();
+  photos.forEach((photo) => {
+    const thumbnail = pictureTemplate.cloneNode(true);
+    const image = thumbnail.querySelector('.picture__img');
 
-getDescriptionPhoto.forEach = ((getPhoto) => {
-  const thumbnail = pictureTemplate.cloneNode(true);
-  const image = thumbnail.querySelector('.picture__img');
+    image.src = photo.url;
+    image.alt = photo.description;
 
-image.src = getPhoto.url;
-image.alt = getPhoto.description;
+    thumbnail.querySelector('.picture__likes').textContent = photo.likes;
+    thumbnail.querySelector('.picture__comments').textContent = photo.comments.length;
 
-thumbnail.querySelector('.picture__likes').textContent = getPhoto.likes;
-thumbnail.querySelector('.picture__comments').textContent = getPhoto.comments;
+    fragment.appendChild(thumbnail);
+  });
+  container.append(fragment);
+}
 
-container.appendChild(thumbnail);
-});
+export { render }
 
-
-
-
-// <template id="picture">
-//     <a href="#" class="picture">
-//       <img class="picture__img" src="" width="182" height="182" alt="Случайная фотография">
-//       <p class="picture__info">
-//         <span class="picture__comments"></span>
-//         <span class="picture__likes"></span>
-//       </p>
-//     </a>
-//   </template>
-
-
-
-// Адрес изображения url подставьте как атрибут src изображения.
-// Описание изображения description подставьте в атрибут alt изображения.
-// Количество лайков likes выведите в блок .picture__likes.
-// Количество комментариев comments выведите в блок .picture__comments
 
 

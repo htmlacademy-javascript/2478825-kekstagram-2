@@ -1,6 +1,6 @@
-import './data.js';
-import './util.js';
 import {getDescriptionPhoto} from './data.js';
-import './thumbnail.js';
+import {render} from './thumbnail.js';
 
-console.log (getDescriptionPhoto());
+const data = getDescriptionPhoto();
+
+render(data);
