@@ -1,12 +1,14 @@
+import { open as openModal } from "./modal.js";
+
 const pictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 const container = document.querySelector('.pictures');
-const photoList = [];
+let photoList;
 
 const render = (photos) => {
-  photoList.length = 0;
-  photoList.push(...structuredClone(photos));
+
+  photoList = [...photos];
   const fragment = document.createDocumentFragment();
   photoList.forEach((photo) => {
     const thumbnail = pictureTemplate.cloneNode(true);
@@ -14,7 +16,7 @@ const render = (photos) => {
 
     image.src = photo.url;
     image.alt = photo.description;
-    image.dataset.id = photo.id;
+    thumbnail.dataset.id = photo.id;
     thumbnail.querySelector('.picture__likes').textContent = photo.likes;
     thumbnail.querySelector('.picture__comments').textContent = photo.comments.length;
 
@@ -25,9 +27,12 @@ const render = (photos) => {
 }
 
 container.addEventListener('click', (evt) => {
+  evt.preventDefault();
   const card = evt.target.closest('.picture');
   if (card) {
-    console.log(card.dataset.id)
+    const id = Number(card.dataset.id)
+    const photo = photoList.find((item) => item.id === id);
+    openModal(photo);
   }
 })
 export { render, photoList }

@@ -1,14 +1,18 @@
 const bigPicture = document.querySelector('.big-picture');
-const bigPictureImg = bigPicture.querySelector('.big-picture__img');
+const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
 const likesCount = bigPicture.querySelector('.likes-count');
 const bigPictureCancel = bigPicture.querySelector('.big-picture__cancel');
 const showCountsCommet = bigPicture.querySelector('.social__comment-shown-count');
 const totalCountsCommet = bigPicture.querySelector('.social__comment-total-count');
 const socialComments = bigPicture.querySelector('.social__comments');
 const socialComment = bigPicture.querySelector('.social__comment');
+const socialCaption = bigPicture.querySelector('.social__caption');
+const commentsLoader = bigPicture.querySelector('.comments-loader');
 const body = document.body;
-
-
+let currentCount = 0;
+let comments = [];
+const COUNT_STEP = 5;
+let localComments;
 
 const showBigPicture = () => {
   bigPicture.classList.remove('hidden');
@@ -33,19 +37,39 @@ const renderComment = ({ message, name, avatar }) => {
   return newComment;
 }
 
-const renderComments = (data) => {
-  const fragment = document.createDocumentFragment()
-  data.forEach((item) => {
-  fragment.append(renderComment(item))
-  });
-  socialComments.append(fragment);
+const renderStatistic = () => {
+  showCountsCommet.textContent = currentCount;
 }
 
-const render = ({ url, likes, comments }) => {
+const renderComments = () => {
+  const fragment = document.createDocumentFragment();
+
+  localComments.splice(0, COUNT_STEP).forEach((item) => {
+    fragment.append(renderComment(item))
+    currentCount++;
+  });
+  socialComments.append(fragment);
+
+  renderStatistic();
+  renderLoader();
+}
+
+const renderLoader = () => {
+  if (localComments.length) {
+    commentsLoader.classList.remove ('hidden');
+  } else {
+    commentsLoader.classList.add ('hidden');
+  }
+}
+
+const render = ({ url, likes, comments, description }) => {
   bigPictureImg.src = url;
   likesCount.textContent = likes;
-  showCountsCommet.textContent = 5;
   totalCountsCommet.textContent = comments.length;
+  socialCaption.textContent = description;
+  localComments = [...comments];
+  currentCount = 0;
+  renderComments();
 }
 
 export const open = (photo) => {
@@ -55,6 +79,18 @@ export const open = (photo) => {
   render(photo);
 }
 
-bigPictureCancel.addEventListener('click', () => {
+bigPictureCancel.addEventListener('click', (evt) => {
+  evt.preventDefault();
   closeBigPicture();
-})
+});
+
+document.addEventListener('keydown', (evt) => {
+  if (evt.key === 'Escape') {
+    evt.preventDefault();
+    closeBigPicture();
+  }
+});
+
+commentsLoader.addEventListener ('click', () => {
+  renderComments();
+});
