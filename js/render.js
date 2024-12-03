@@ -4,11 +4,11 @@ const pictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 const container = document.querySelector('.pictures');
-const photoList = [];
+let photoList;
 
 const render = (photos) => {
-  photoList.length = 0;
-  photoList.push(...structuredClone(photos));
+
+  photoList = [...photos];
   const fragment = document.createDocumentFragment();
   photoList.forEach((photo) => {
     const thumbnail = pictureTemplate.cloneNode(true);
