@@ -27,7 +27,6 @@ const render = (photos) => {
 }
 
 container.addEventListener('click', (evt) => {
-  evt.preventDefault();
   const card = evt.target.closest('.picture');
   if (card) {
     const id = Number(card.dataset.id)
