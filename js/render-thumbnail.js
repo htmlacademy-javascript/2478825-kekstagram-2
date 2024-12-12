@@ -7,13 +7,11 @@ const container = document.querySelector('.pictures');
 let photoList;
 
 const render = (photos) => {
-
   photoList = [...photos];
   const fragment = document.createDocumentFragment();
   photoList.forEach((photo) => {
     const thumbnail = pictureTemplate.cloneNode(true);
     const image = thumbnail.querySelector('.picture__img');
-
     image.src = photo.url;
     image.alt = photo.description;
     thumbnail.dataset.id = photo.id;

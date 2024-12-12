@@ -1,4 +1,6 @@
-import './validation.js';
+import { isValid, reset as resetValidation } from './validation.js';
+import {reset as resetScale} from './scale.js';
+import {reset as resetEffects} from './effect.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
@@ -18,7 +20,10 @@ uploadFile.addEventListener('change', () => {
 const closeForm = () => {
   uploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
-  uploadFile.value = '';
+  uploadForm.reset();
+  resetValidation();
+  resetScale();
+  resetEffects();
 };
 
 uploadCancel.addEventListener('click', (evt) => {
@@ -30,5 +35,14 @@ document.addEventListener('keydown', (evt) => {
   if (evt.key === 'Escape') {
     evt.preventDefault();
     closeForm();
+
   }
 });
+
+const onFormSubmit = (evt) => {
+  if (!isValid()) {
+    evt.preventDefault();
+  }
+};
+
+uploadForm.addEventListener('submit', onFormSubmit);
