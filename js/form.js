@@ -1,64 +1,48 @@
+import { isValid, reset as resetValidation } from './validation.js';
+import {reset as resetScale} from './scale.js';
+import {reset as resetEffects} from './effect.js';
+
 const uploadForm = document.querySelector('.img-upload__form');
-const uploadFile = uploadForm.querySelector('#upload-file');
 const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
 const body = document.body;
 const uploadCancel = uploadForm.querySelector('.img-upload__cancel');
-const textHashtags = uploadForm.querySelector('.text__hashtags');
-const textComment = uploadForm.querySelector('.text__description');
+const uploadFile = uploadForm.querySelector('#upload-file');
 
-const showForm = () => {
-  uploadFile.addEventListener('change', () => {
-    uploadOverlay.classList.remove('hidden');
-    body.classList.add('modal-open');
-  })
+const openForm = () => {
   uploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
 }
 
-export const openForm = () => {
-  showForm();
-}
+uploadFile.addEventListener('change', () => {
+  openForm();
+});
 
 const closeForm = () => {
   uploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
-  uploadFile.value = '';
+  uploadForm.reset();
+  resetValidation();
+  resetScale();
+  resetEffects();
 };
+
+uploadCancel.addEventListener('click', (evt) => {
+  evt.preventDefault();
+  closeForm();
+});
 
 document.addEventListener('keydown', (evt) => {
   if (evt.key === 'Escape') {
     evt.preventDefault();
     closeForm();
+
   }
 });
 
-uploadCancel.addEventListener('click', (evt) => {
-  evt.preventDefault();
-  closeForm();
-})
-
-const pristine = new Pristine(uploadForm, {
-  classTo: 'img-upload__field-wrapper',
-  errorClass: 'img-upload__field-wrapper--error',
-  errorTextParent: 'img-upload__field-wrapper'
-
-});
-
-pristine.addValidator (textHashtags, (value) => {
-  const hashtags = /^#[a-za-яё0-9]{1,19}$/i.test(value);
-  return hashtags;
-}, 'Хэштэг содержит неверные символы');
-
-pristine.addValidator (textComment, (value) => {
-  const currentComment = value.length <= 140; value.toLowerCase().trim();
-  if (textComment.length === 0) {
-    return true;
+const onFormSubmit = (evt) => {
+  if (!isValid()) {
+    evt.preventDefault();
   }
-  return currentComment;
-}, 'Ошибка здесь');
+};
 
-
-
-
-
-
+uploadForm.addEventListener('submit', onFormSubmit);
