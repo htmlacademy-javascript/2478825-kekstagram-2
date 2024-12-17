@@ -2,7 +2,6 @@ const MAX_SYMBOL = 140;
 const SPACE = /\s+/g;
 const HASHTAG_FORMULA = /^#[a-za-яё0-9]{1,19}$/;
 const MAX_HASHTAGS = 5;
-
 const uploadForm = document.querySelector('.img-upload__form');
 const inputHashtags = uploadForm.querySelector('.text__hashtags');
 const inputComment = uploadForm.querySelector('.text__description');
