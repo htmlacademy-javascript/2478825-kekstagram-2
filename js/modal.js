@@ -1,3 +1,5 @@
+import { removeEscapeControl, setEscapeControl } from "./escape-control.js";
+
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
 const likesCount = bigPicture.querySelector('.likes-count');
@@ -77,18 +79,13 @@ export const open = (photo) => {
   showBigPicture();
   socialComments.innerHTML = '';
   render(photo);
+  setEscapeControl(hideBigPicture);
 }
 
 bigPictureCancel.addEventListener('click', (evt) => {
   evt.preventDefault();
   closeBigPicture();
-});
-
-document.addEventListener('keydown', (evt) => {
-  if (evt.key === 'Escape') {
-    evt.preventDefault();
-    closeBigPicture();
-  }
+  removeEscapeControl();
 });
 
 commentsLoader.addEventListener ('click', () => {

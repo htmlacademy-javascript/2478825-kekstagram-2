@@ -1,4 +1,5 @@
 import { POPUPS } from "./constans.js";
+import { removeEscapeControl, setEscapeControl } from "./escape-control.js";
 
 const successTemplate = document.querySelector('#success').content.querySelector('.success');
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
@@ -15,6 +16,10 @@ export const showPopup = (type) => {
   newPopup.addEventListener('click', ({target}) => {
     if(target.classList.contains(type) || target.classList.contains(`${type}__button`)){
       newPopup.remove();
+      removeEscapeControl();
     };
   });
+  setEscapeControl(() => {
+    newPopup.remove();
+  })
 }
