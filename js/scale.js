@@ -1,9 +1,4 @@
-
-const SCALE_VALUE_MIN = 25;
-const SCALE_VALUE_MAX = 100;
-const SCALE_VALUE_STEP = 25;
-const SCALE_VALUE_DEFAULT = SCALE_VALUE_MAX;
-const FACTOR = 0.01;
+import { FACTOR, SCALE_VALUE_DEFAULT, SCALE_VALUE_MAX, SCALE_VALUE_MIN, SCALE_VALUE_STEP } from "./constans";
 
 const scaleValue = document.querySelector('.scale__control--value');
 const imageUploadPreview = document.querySelector('.img-upload__preview img');

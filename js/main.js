@@ -1,17 +1,12 @@
-// import {getDescriptionPhoto} from './data.js';
 import {render} from './render-thumbnail.js';
 import './form.js';
-import { showErrorMessage } from './util.js';
 import { getData } from './api.js';
-
-// const data = getDescriptionPhoto();
-
-//  render(data);
-
+import { configFilter } from './filter.js';
 
 getData()
 .then((data)=>{
 render(data)
+configFilter()
 })
 .catch(()=>{
   showErrorMessage()

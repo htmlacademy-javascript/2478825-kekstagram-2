@@ -67,6 +67,17 @@ export const EffectsSetting = {
 
 export const DEFAULT_EFFECT = EFFECTS.NONE;
 
+export const MAX_SYMBOL = 140;
+export const SPACE = /\s+/g;
+export const HASHTAG_FORMULA = /^#[a-za-яё0-9]{1,19}$/;
+export const MAX_HASHTAGS = 5;
+
+export const SCALE_VALUE_MIN = 25;
+export const SCALE_VALUE_MAX = 100;
+export const SCALE_VALUE_STEP = 25;
+export const SCALE_VALUE_DEFAULT = SCALE_VALUE_MAX;
+export const FACTOR = 0.01;
+
 export const POPUPS = {
   SUCCESS: 'success',
   ERROR: 'error'
@@ -76,3 +87,16 @@ export const SUBMIT_TEXT = {
   IDLE: 'Опубликовать',
   SENDING: 'Публикую...'
 }
+
+export const COUNT_PHOTO = 10;
+
+export const ACTIVE_BUTTON_CLASS = 'img-filters__button--active';
+
+export const FILTER = {
+  default: 'filter-default',
+  random: 'filter-random',
+  discussed: 'filter-discussed'
+};
+
+
+export const FILE_TYPES = ['jpg', 'jpeg', 'png', 'gif', 'jfif'];
