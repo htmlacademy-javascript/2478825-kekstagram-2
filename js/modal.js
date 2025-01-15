@@ -1,4 +1,4 @@
-import { removeEscapeControl, setEscapeControl } from "./escape-control.js";
+import { removeEscapeControl, setEscapeControl } from './escape-control.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
@@ -12,7 +12,7 @@ const socialCaption = bigPicture.querySelector('.social__caption');
 const commentsLoader = bigPicture.querySelector('.comments-loader');
 const body = document.body;
 let currentCount = 0;
-let comments = [];
+// let comments = [];
 const COUNT_STEP = 5;
 let localComments;
 
@@ -37,24 +37,11 @@ const renderComment = ({ message, name, avatar }) => {
   userpic.alt = name;
   newComment.querySelector('.social__text').textContent = message;
   return newComment;
-}
+};
 
 const renderStatistic = () => {
   showCountsCommet.textContent = currentCount;
-}
-
-const renderComments = () => {
-  const fragment = document.createDocumentFragment();
-
-  localComments.splice(0, COUNT_STEP).forEach((item) => {
-    fragment.append(renderComment(item))
-    currentCount++;
-  });
-  socialComments.append(fragment);
-
-  renderStatistic();
-  renderLoader();
-}
+};
 
 const renderLoader = () => {
   if (localComments.length) {
@@ -62,7 +49,20 @@ const renderLoader = () => {
   } else {
     commentsLoader.classList.add ('hidden');
   }
-}
+};
+
+const renderComments = () => {
+  const fragment = document.createDocumentFragment();
+
+  localComments.splice(0, COUNT_STEP).forEach((item) => {
+    fragment.append(renderComment(item));
+    currentCount++;
+  });
+  socialComments.append(fragment);
+
+  renderStatistic();
+  renderLoader();
+};
 
 const render = ({ url, likes, comments, description }) => {
   bigPictureImg.src = url;
@@ -72,15 +72,15 @@ const render = ({ url, likes, comments, description }) => {
   localComments = [...comments];
   currentCount = 0;
   renderComments();
-}
+};
 
 export const open = (photo) => {
-  console.log(photo);
+  // console.log(photo);
   showBigPicture();
   socialComments.innerHTML = '';
   render(photo);
   setEscapeControl(hideBigPicture);
-}
+};
 
 bigPictureCancel.addEventListener('click', (evt) => {
   evt.preventDefault();

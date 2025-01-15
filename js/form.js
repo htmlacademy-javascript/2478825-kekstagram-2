@@ -27,13 +27,13 @@ const closeForm = () => {
   resetEffects();
 };
 
-const canCloseForm = () => !(document.activeElement === inputHashtags || document.activeElement === inputComment)
+const canCloseForm = () => !(document.activeElement === inputHashtags || document.activeElement === inputComment);
 
 const openForm = () => {
   uploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
   setEscapeControl(closeForm, canCloseForm);
-}
+};
 
 const onFileInputChange = () => {
   const file = uploadFile.files[0];
@@ -45,12 +45,9 @@ const onFileInputChange = () => {
     uploadPreviewEffects.forEach((item) => {
       item.style.backgroundImage = `url(${url})`;
     });
-  }else {
-    file.reset();
   }
-
   openForm();
-}
+};
 
 uploadFile.addEventListener('change', onFileInputChange);
 
@@ -73,7 +70,7 @@ const onFormSubmit = (evt) => {
     sendData(new FormData(uploadForm))
       .then((response) => {
         if (!response.ok) {
-          throw new Error()
+          throw new Error();
         }
         closeForm();
         removeEscapeControl();
@@ -84,7 +81,7 @@ const onFormSubmit = (evt) => {
       })
       .finally(() => {
         blockSubmitButton(false);
-      })
+      });
   }
 };
 uploadForm.addEventListener('submit', onFormSubmit);
