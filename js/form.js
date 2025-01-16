@@ -5,6 +5,7 @@ import { showPopup } from './popup.js';
 import { FILE_TYPES, POPUPS, SUBMIT_TEXT } from './constans.js';
 import { sendData } from './api.js';
 import { removeEscapeControl, setEscapeControl } from './escape-control.js';
+import { showErrorMessage } from './util.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
@@ -27,13 +28,13 @@ const closeForm = () => {
   resetEffects();
 };
 
-const canCloseForm = () => !(document.activeElement === inputHashtags || document.activeElement === inputComment)
+const canCloseForm = () => !(document.activeElement === inputHashtags || document.activeElement === inputComment);
 
 const openForm = () => {
   uploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
   setEscapeControl(closeForm, canCloseForm);
-}
+};
 
 const onFileInputChange = () => {
   const file = uploadFile.files[0];
@@ -45,12 +46,12 @@ const onFileInputChange = () => {
     uploadPreviewEffects.forEach((item) => {
       item.style.backgroundImage = `url(${url})`;
     });
-  }else {
-    file.reset();
+  } else {
+    showErrorMessage();
+    return;
   }
-
   openForm();
-}
+};
 
 uploadFile.addEventListener('change', onFileInputChange);
 
@@ -73,7 +74,7 @@ const onFormSubmit = (evt) => {
     sendData(new FormData(uploadForm))
       .then((response) => {
         if (!response.ok) {
-          throw new Error()
+          throw new Error();
         }
         closeForm();
         removeEscapeControl();
@@ -84,7 +85,7 @@ const onFormSubmit = (evt) => {
       })
       .finally(() => {
         blockSubmitButton(false);
-      })
+      });
   }
 };
 uploadForm.addEventListener('submit', onFormSubmit);

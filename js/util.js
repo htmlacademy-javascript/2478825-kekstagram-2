@@ -5,17 +5,17 @@ const getRandomInteger = (a, b) => {
   return Math.floor(result);
 };
 
-export {getRandomInteger};
+export { getRandomInteger };
 const dataErrorTemplate = document.querySelector('#data-error').content.querySelector('.data-error');
 const body = document.body;
 const SHOW_TIME = 5000;
 
 export const showErrorMessage = () => {
-const newDataError = dataErrorTemplate.cloneNode(true);
-body.append(newDataError);
-setTimeout(() => {
-  newDataError.remove();
-}, SHOW_TIME)
+  const newDataError = dataErrorTemplate.cloneNode(true);
+  body.append(newDataError);
+  setTimeout(() => {
+    newDataError.remove();
+  }, SHOW_TIME);
 };
 
 export const debounce = (callback, timeoutDelay = 500) => {

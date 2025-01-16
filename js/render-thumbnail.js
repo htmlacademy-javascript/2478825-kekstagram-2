@@ -1,4 +1,4 @@
-import { open as openModal } from "./modal.js";
+import { open as openModal } from './modal.js';
 
 const pictureTemplate = document.querySelector('#picture')
   .content
@@ -6,7 +6,12 @@ const pictureTemplate = document.querySelector('#picture')
 const container = document.querySelector('.pictures');
 let photoList;
 
+const clear = () => {
+  document.querySelectorAll('.picture').forEach((element) => element.remove());
+};
+
 const render = (photos) => {
+  clear();
   photoList = [...photos];
   const fragment = document.createDocumentFragment();
   photoList.forEach((photo) => {
@@ -20,18 +25,19 @@ const render = (photos) => {
 
     fragment.appendChild(thumbnail);
   });
+
   container.append(fragment);
   return photoList;
-}
+};
 
 container.addEventListener('click', (evt) => {
   const card = evt.target.closest('.picture');
   if (card) {
-    const id = Number(card.dataset.id)
+    const id = Number(card.dataset.id);
     const photo = photoList.find((item) => item.id === id);
     openModal(photo);
   }
-})
-export { render, photoList }
+});
+export { render, photoList };
 
 

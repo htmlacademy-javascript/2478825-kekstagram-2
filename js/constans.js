@@ -13,13 +13,14 @@ const EFFECTS_STYLES = {
   INVERT: 'invert',
   BLUR: 'blur',
   BRIGHTNESS: 'brightness'
-}
+};
 
 const UNITS = {
   PX: 'px',
   NONE: '',
   PS: '%'
-}
+};
+
 export const EffectsSetting = {
   [EFFECTS.NONE]: {
     min: 0,
@@ -81,12 +82,12 @@ export const FACTOR = 0.01;
 export const POPUPS = {
   SUCCESS: 'success',
   ERROR: 'error'
-}
+};
 
 export const SUBMIT_TEXT = {
   IDLE: 'Опубликовать',
   SENDING: 'Публикую...'
-}
+};
 
 export const COUNT_PHOTO = 10;
 

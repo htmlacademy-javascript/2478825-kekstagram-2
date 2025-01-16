@@ -1,5 +1,4 @@
-import { HASHTAG_FORMULA, MAX_HASHTAGS, MAX_SYMBOL, SPACE } from "./constans.js";
-
+import { HASHTAG_FORMULA, MAX_HASHTAGS, MAX_SYMBOL, SPACE } from './constans.js';
 const uploadForm = document.querySelector('.img-upload__form');
 const inputHashtags = uploadForm.querySelector('.text__hashtags');
 const inputComment = uploadForm.querySelector('.text__description');
@@ -23,7 +22,7 @@ const checkHashtags = (value) => {
     return true;
   }
   const hashTags = createHashtags(value);
-  return hashTags.every((hashtag) => HASHTAG_FORMULA.test(hashtag))
+  return hashTags.every((hashtag) => HASHTAG_FORMULA.test(hashtag));
 };
 
 const checkHashtagsCount = (value) => {
@@ -39,9 +38,9 @@ const checkUniqueHashtags = (value) => {
     return true;
   }
   const hashTags = createHashtags(value);
-  const uniques = [...new Set(hashTags)]
+  const uniques = [...new Set(hashTags)];
   return hashTags.length === uniques.length;
-}
+};
 
 pristine.addValidator(
   inputHashtags,

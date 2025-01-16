@@ -1,6 +1,6 @@
-import { ACTIVE_BUTTON_CLASS, COUNT_PHOTO, FILTER } from "./constans.js";
-import { render } from "./render-thumbnail.js";
-import { debounce} from "./util.js";
+import { ACTIVE_BUTTON_CLASS, COUNT_PHOTO, FILTER } from './constans.js';
+import { render } from './render-thumbnail.js';
+import { debounce} from './util.js';
 
 const picturesFilter = document.querySelector('.img-filters');
 
@@ -23,23 +23,25 @@ const onFilterChange = (evt) => {
   currentFilter = targetButton.getAttribute('id');
 
   applyFilter();
-}
+};
 
 function applyFilter() {
   let filteredPictures = [];
   if (currentFilter === FILTER.default) {
     filteredPictures = photos;
   } else if (currentFilter === FILTER.random) {
-    filteredPictures = photos.sort(() => 0.5 - Math.random()).slice(0, COUNT_PHOTO);
+    filteredPictures = [...photos].sort(() => 0.5 - Math.random()).slice(0, COUNT_PHOTO);
   } else if (currentFilter === FILTER.discussed) {
-    filteredPictures = photos.sort((a, b) => b.comments.length - a.comments.length);
+    filteredPictures = [...photos].sort((a, b) => b.comments.length - a.comments.length);
   }
   debounceRender(filteredPictures);
 }
 
-function configFilter() {
+function configFilter(data) {
+  photos = [...data];
   picturesFilter.classList.remove('img-filters--inactive');
-  picturesFilter.addEventListener('click', onFilterChange)
 }
+
+picturesFilter.addEventListener('click', onFilterChange);
 
 export { configFilter };

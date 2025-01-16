@@ -1,4 +1,4 @@
-import { FACTOR, SCALE_VALUE_DEFAULT, SCALE_VALUE_MAX, SCALE_VALUE_MIN, SCALE_VALUE_STEP } from "./constans";
+import { FACTOR, SCALE_VALUE_DEFAULT, SCALE_VALUE_MAX, SCALE_VALUE_MIN, SCALE_VALUE_STEP } from './constans';
 
 const scaleValue = document.querySelector('.scale__control--value');
 const imageUploadPreview = document.querySelector('.img-upload__preview img');
@@ -9,8 +9,8 @@ let currentScale = SCALE_VALUE_DEFAULT;
 
 const render = () => {
   scaleValue.value = `${currentScale}%`;
-  imageUploadPreview.style.transform = `scale(${currentScale * FACTOR})`
-}
+  imageUploadPreview.style.transform = `scale(${currentScale * FACTOR})`;
+};
 
 const onScaleSmallerClick = () => {
   currentScale = currentScale > SCALE_VALUE_MIN ? currentScale - SCALE_VALUE_STEP : SCALE_VALUE_MIN;
