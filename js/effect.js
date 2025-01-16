@@ -16,6 +16,14 @@ noUiSlider.create(sliderContainer, {
   start: 80,
   step: 1,
   connect: 'lower',
+  format: {
+    to: function (val) {
+      return parseFloat(val);
+    },
+    from: function (val) {
+      return parseFloat(val);
+    }
+  },
 });
 
 const render = () => {
