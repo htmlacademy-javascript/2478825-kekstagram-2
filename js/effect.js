@@ -19,7 +19,7 @@ noUiSlider.create(sliderContainer, {
 });
 
 const render = () => {
-  const {style, units} = EffectsSetting[currentEffect];
+  const { style, units } = EffectsSetting[currentEffect];
   imageUploadPreview.style.filter = `${style}(${value.value}${units})`;
 };
 
@@ -48,9 +48,9 @@ export const reset = () => {
 
 effectsList.addEventListener('change', ({ target }) => {
   currentEffect = target.value;
-  if (currentEffect === DEFAULT_EFFECT){
+  if (currentEffect === DEFAULT_EFFECT) {
     reset();
-  }else {
+  } else {
     updateSlider();
     slider.classList.remove('hidden');
   }

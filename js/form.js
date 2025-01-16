@@ -5,6 +5,7 @@ import { showPopup } from './popup.js';
 import { FILE_TYPES, POPUPS, SUBMIT_TEXT } from './constans.js';
 import { sendData } from './api.js';
 import { removeEscapeControl, setEscapeControl } from './escape-control.js';
+import { showErrorMessage } from './util.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
@@ -45,6 +46,9 @@ const onFileInputChange = () => {
     uploadPreviewEffects.forEach((item) => {
       item.style.backgroundImage = `url(${url})`;
     });
+  } else {
+    showErrorMessage();
+    return;
   }
   openForm();
 };

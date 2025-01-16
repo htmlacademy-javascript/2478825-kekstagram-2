@@ -34,7 +34,6 @@ function applyFilter() {
   } else if (currentFilter === FILTER.discussed) {
     filteredPictures = [...photos].sort((a, b) => b.comments.length - a.comments.length);
   }
-  // console.log(filteredPictures)
   debounceRender(filteredPictures);
 }
 

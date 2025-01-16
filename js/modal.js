@@ -12,7 +12,6 @@ const socialCaption = bigPicture.querySelector('.social__caption');
 const commentsLoader = bigPicture.querySelector('.comments-loader');
 const body = document.body;
 let currentCount = 0;
-// let comments = [];
 const COUNT_STEP = 5;
 let localComments;
 
@@ -75,7 +74,6 @@ const render = ({ url, likes, comments, description }) => {
 };
 
 export const open = (photo) => {
-  // console.log(photo);
   showBigPicture();
   socialComments.innerHTML = '';
   render(photo);
