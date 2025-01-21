@@ -101,3 +101,7 @@ export const FILTER = {
 
 
 export const FILE_TYPES = ['jpg', 'jpeg', 'png', 'gif', 'jfif'];
+
+export const COUNT_STEP = 5;
+
+export const SHOW_TIME = 5000;

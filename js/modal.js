@@ -1,4 +1,5 @@
 import { removeEscapeControl, setEscapeControl } from './escape-control.js';
+import { COUNT_STEP } from './constans.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
@@ -11,8 +12,8 @@ const socialComment = bigPicture.querySelector('.social__comment');
 const socialCaption = bigPicture.querySelector('.social__caption');
 const commentsLoader = bigPicture.querySelector('.comments-loader');
 const body = document.body;
+
 let currentCount = 0;
-const COUNT_STEP = 5;
 let localComments;
 
 const showBigPicture = () => {
