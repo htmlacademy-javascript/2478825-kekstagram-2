@@ -1,4 +1,4 @@
-import { SHOW_TIME } from "./constans.js";
+import { SHOW_TIME } from './constans.js';
 
 const dataErrorTemplate = document.querySelector('#data-error').content.querySelector('.data-error');
 const body = document.body;
