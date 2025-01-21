@@ -37,11 +37,11 @@ function applyFilter() {
   debounceRender(filteredPictures);
 }
 
-function settingFilter(data) {
+function initFilter(data) {
   photos = [...data];
   picturesFilter.classList.remove('img-filters--inactive');
 }
 
 picturesFilter.addEventListener('click', onFilterChange);
 
-export { settingFilter };
+export { initFilter };
