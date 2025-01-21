@@ -1,5 +1,9 @@
 import { removeEscapeControl, setEscapeControl } from './escape-control.js';
 
+let currentCount = 0;
+const COUNT_STEP = 5;
+let localComments;
+
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
 const likesCount = bigPicture.querySelector('.likes-count');
@@ -11,9 +15,6 @@ const socialComment = bigPicture.querySelector('.social__comment');
 const socialCaption = bigPicture.querySelector('.social__caption');
 const commentsLoader = bigPicture.querySelector('.comments-loader');
 const body = document.body;
-let currentCount = 0;
-const COUNT_STEP = 5;
-let localComments;
 
 const showBigPicture = () => {
   bigPicture.classList.remove('hidden');

@@ -1,7 +1,6 @@
 const modals = [];
 let listener = null;
 
-
 const onDocumentKeyDown = ({ key }) => {
   if (key === 'Escape') {
     const lastIndex = modals.length - 1;

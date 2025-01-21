@@ -6,9 +6,10 @@ const getRandomInteger = (a, b) => {
 };
 
 export { getRandomInteger };
+
+const SHOW_TIME = 5000;
 const dataErrorTemplate = document.querySelector('#data-error').content.querySelector('.data-error');
 const body = document.body;
-const SHOW_TIME = 5000;
 
 export const showErrorMessage = () => {
   const newDataError = dataErrorTemplate.cloneNode(true);

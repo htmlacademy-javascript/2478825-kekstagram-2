@@ -4,7 +4,7 @@ const pictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 const container = document.querySelector('.pictures');
-let photoList;
+let photoLists;
 
 const clear = () => {
   document.querySelectorAll('.picture').forEach((element) => element.remove());
@@ -12,9 +12,9 @@ const clear = () => {
 
 const render = (photos) => {
   clear();
-  photoList = [...photos];
+  photoLists = [...photos];
   const fragment = document.createDocumentFragment();
-  photoList.forEach((photo) => {
+  photoLists.forEach((photo) => {
     const thumbnail = pictureTemplate.cloneNode(true);
     const image = thumbnail.querySelector('.picture__img');
     image.src = photo.url;
@@ -27,17 +27,17 @@ const render = (photos) => {
   });
 
   container.append(fragment);
-  return photoList;
+  return photoLists;
 };
 
 container.addEventListener('click', (evt) => {
   const card = evt.target.closest('.picture');
   if (card) {
     const id = Number(card.dataset.id);
-    const photo = photoList.find((item) => item.id === id);
+    const photo = photoLists.find((item) => item.id === id);
     openModal(photo);
   }
 });
-export { render, photoList };
+export { render, photoLists };
 
 
